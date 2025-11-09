@@ -5,8 +5,11 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 
 const app = express();
-const PORT = process.env.PORT || 5000;
-const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/mydatabase';
+const PORT = process.env.PORT || 3000;
+const MONGO_URI = process.env.DB_URI
+
+//import routes
+const productRoutes = require('./routes/producrRoutes');
 
 // Middleware
 app.use(cors()); // Enable CORS for all routes
@@ -16,6 +19,8 @@ app.use(express.json()); // Built-in body parser for JSON
 app.get('/', (req, res) => {
   res.send('The server is running properly.');
 });
+
+app.use('/api/products', productRoutes);
 
 // Connect to MongoDB
 mongoose.connect(MONGO_URI).then(() => {

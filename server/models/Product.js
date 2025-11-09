@@ -21,10 +21,12 @@ const productSchema = new mongoose.Schema({
         type: String,
         required: true,
         enum: ['Events', 'Holidays', 'Kids', 'TeamGifts','Seasonal', 'Other'],
-        subCategories: {
-            type: [String],
-            default: [],
-        },
+       
+    },
+    // Subcategories - optional
+    subCategories: {
+        type: [String],
+        default: [],
     },
 
     // Product price
