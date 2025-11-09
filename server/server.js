@@ -10,6 +10,8 @@ const MONGO_URI = process.env.DB_URI
 
 //import routes
 const productRoutes = require('./routes/producrRoutes');
+const subcategoryRoutes = require('./routes/subCategoryRoutes'); 
+const categoryRoutes = require('./routes/categoryRoutes');
 
 // Middleware
 app.use(cors()); // Enable CORS for all routes
@@ -20,7 +22,10 @@ app.get('/', (req, res) => {
   res.send('The server is running properly.');
 });
 
+// Use routes
 app.use('/api/products', productRoutes);
+app.use('/api/subcategories', subcategoryRoutes); // Use subcategory routes
+app.use('/api/categories', categoryRoutes); // Use category routes
 
 // Connect to MongoDB
 mongoose.connect(MONGO_URI).then(() => {

@@ -18,14 +18,15 @@ const productSchema = new mongoose.Schema({
 
     // Product category
     category: {
-        type: String,
+       type: mongoose.Schema.Types.ObjectId,
+        ref: 'Category', // Reference to Category model
         required: true,
-        enum: ['Events', 'Holidays', 'Kids', 'TeamGifts','Seasonal', 'Other'],
        
     },
     // Subcategories - optional
     subCategories: {
-        type: [String],
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Subcategory', // Reference to Subcategory model
         default: [],
     },
 
@@ -48,5 +49,6 @@ const productSchema = new mongoose.Schema({
 
 });
 
+// Export the Product model
 const Product = mongoose.model('Product', productSchema);
 module.exports = Product;
